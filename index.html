@@ -227,17 +227,18 @@ a { color: inherit; text-decoration: none; }
   line-height: 1;
   padding-right: 0.1em;
 }
+/* 텍스트 너비 및 여백 최적화 (4~5줄) */
 .meaning-desc {
   font-family: var(--display);
   font-size: clamp(16px, 2vw, 19px);
   color: var(--muted);
   font-weight: 500;
-  max-width: 680px;
+  max-width: 800px;
   width: 100%;
   text-align: center;
   margin: 0 auto 28px;
   line-height: 1.55;
-  padding: 0 16px;
+  padding: 0 20px;
 }
 
 /* === STAGE 2: PATTERN === */
@@ -284,12 +285,13 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 36px;
   min-height: 110px;
 }
+/* 박스 크기 키우기 */
 .eq-block {
   background: white;
   border: 2px solid var(--border);
   border-radius: var(--r-md);
-  padding: 20px 28px;
-  min-width: 110px;
+  padding: 24px 32px; 
+  min-width: 130px;
   text-align: center;
   transition: all 0.3s;
   white-space: nowrap;
@@ -305,7 +307,7 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 .eq-block .en {
-  font-size: 14px;
+  font-size: 14px; 
   color: var(--muted);
   font-weight: 600;
   margin-top: 4px;
@@ -317,13 +319,13 @@ a { color: inherit; text-decoration: none; }
 .eq-block.fixed .kr { color: var(--brand); }
 .eq-block.fixed .en { color: var(--brand); font-weight: 700; }
 
-/* === 고정된 검정 블럭 크기 및 중앙 정렬 === */
+/* 검정 박스 크기 줄이기 및 글자 넘침 완벽 방지 */
 .eq-block.result {
   background: var(--ink);
   border-color: var(--ink);
   transform: scale(1.08);
-  width: 140px;
-  max-width: 140px;
+  width: 135px;
+  max-width: 135px;
   height: 110px;
   min-height: 110px;
   display: flex;
@@ -331,6 +333,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   align-items: center;
   padding: 10px;
+  overflow: hidden; /* 안전장치 */
 }
 .eq-block.result .kr { 
   color: white; 
@@ -345,6 +348,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.2;
   margin-top: 6px;
   width: 100%;
+  word-break: break-word; /* 글자 넘어감 방지 */
 }
 .eq-op {
   font-family: var(--display);
@@ -386,7 +390,7 @@ a { color: inherit; text-decoration: none; }
 .pattern-counter strong { color: var(--brand); font-weight: 800; }
 .pattern-counter.complete strong { color: var(--success); }
 
-/* === INTERIM MINI CTA (between Step 2 & 3) === */
+/* === INTERIM MINI CTA === */
 .stage-mini-cta {
   padding: 0 var(--gutter);
   background: var(--bg-alt);
@@ -415,6 +419,7 @@ a { color: inherit; text-decoration: none; }
   gap: 24px;
   width: 100%;
 }
+/* 타이틀 노란색 적용 */
 .mini-cta-text h3 {
   font-family: var(--display);
   font-size: 28px;
@@ -430,18 +435,20 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.5;
   margin: 0 auto;
 }
+/* 가운데 정렬 및 단일 버튼 구성 */
 .mini-cta-actions {
   display: flex;
-  gap: 12px;
   justify-content: center;
+  width: 100%;
 }
 .mini-cta-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 12px 18px;
+  padding: 16px 28px;
   border-radius: var(--r-pill);
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   transition: all 0.2s;
   white-space: nowrap;
@@ -449,18 +456,11 @@ a { color: inherit; text-decoration: none; }
   border: none;
   font-family: inherit;
 }
-.mini-cta-copy {
-  background: rgba(255,255,255,0.1);
-  color: white;
-  border: 1px solid rgba(255,255,255,0.2);
-}
-.mini-cta-copy:hover { background: rgba(255,255,255,0.18); }
-.mini-cta-copy.copied { background: var(--success); border-color: var(--success); }
 .mini-cta-send {
   background: var(--yellow);
   color: var(--ink);
 }
-.mini-cta-send:hover { background: white; transform: translateY(-1px); }
+.mini-cta-send:hover { background: white; transform: translateY(-2px); box-shadow: 0 4px 14px rgba(255,212,59,0.3); }
 
 /* === STAGE 3: FLASHCARDS === */
 .stage-flashcards {
@@ -473,6 +473,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  margin-top: 40px; /* 안내 문구와의 간격 추가 */
   font-size: 13px;
   font-weight: 600;
   color: var(--muted);
@@ -901,7 +902,6 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 32px;
   flex-wrap: wrap;
 }
-/* Reply Now 버튼 강조 */
 .cta-btn-primary {
   background: var(--yellow);
   color: var(--ink);
@@ -1011,7 +1011,7 @@ a { color: inherit; text-decoration: none; }
   .meaning-word { font-size: clamp(54px, 14vw, 72px); }
   .meaning-desc {
     font-size: 15px;
-    padding: 0 10px;
+    padding: 0 12px;
     max-width: 100%;
     width: 100% !important;
     margin: 0 auto 24px !important;
@@ -1021,10 +1021,12 @@ a { color: inherit; text-decoration: none; }
   /* Screen 3 — Pattern */
   .equation-builder {
     padding: 24px 16px;
-    background: var(--bg-alt); /* 통일된 회색 배경 */
+    background: var(--bg-alt); 
     border-radius: var(--r-lg);
     width: 100%;
   }
+  
+  /* Step 1 + = 수식 고정 부활 */
   .equation {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1032,42 +1034,46 @@ a { color: inherit; text-decoration: none; }
     align-items: center;
     justify-content: center;
     min-height: auto;
-    background: transparent;
+    background: var(--bg-alt);
     border-radius: 0;
+    padding: 12px 0;
     margin: 0 0 20px 0;
-    padding: 0;
-    box-shadow: none;
-    position: static; /* 상단 고정 해제하여 gray 배경 내부에 위치 */
+    box-shadow: 0 8px 16px var(--bg-alt);
+    position: sticky; 
+    top: -10px; /* 스크롤 시 상단에 딱 맞게 */
+    z-index: 10;
   }
   .eq-block {
-    padding: 8px 4px;
+    padding: 12px 8px;
     min-width: 0;
     width: auto;
     max-width: none;
-    flex: 1 1 0;
+    flex: 1 1.2 0;
   }
   .eq-block .kr { font-size: 17px; line-height: 1.05; letter-spacing: -0.04em; }
   .eq-block .en { font-size: 11px; margin-top: 2px; } 
   .eq-block.result {
-    min-width: 0; width: 140px !important; max-width: 140px !important;
+    min-width: 0; 
+    width: 125px !important; 
+    max-width: 125px !important;
     transform: none !important;
-    flex: 0 0 140px !important;
-    padding: 8px 6px !important;
+    flex: 0 0 125px !important;
+    padding: 8px 4px !important;
     height: 90px !important; 
     min-height: 90px !important;
   }
-  .eq-block.result .kr { font-size: 24px !important; }
-  .eq-block.result .en { font-size: 11px !important; margin-top: 4px !important; }
+  .eq-block.result .kr { font-size: 22px !important; }
+  .eq-block.result .en { font-size: 10.5px !important; margin-top: 4px !important; line-height: 1.15; }
   .eq-op { font-size: 14px; flex: 0 0 auto; padding: 0 1px; color: var(--muted-light); }
 
   /* Section headings */
-  .section-head { margin-bottom: 28px; }
+  .section-head { margin-bottom: 40px; } /* 텍스트 아래 여백 확보 */
   .section-head h2 { font-size: clamp(28px, 6.5vw, 40px); margin-bottom: 12px; }
   .section-head .sub { font-size: 14px; }
   .section-head .chip { margin-bottom: 14px; }
 
   /* Screen 4 — Flashcards */
-  .flashcard-progress { margin-bottom: 14px; font-size: 12px; }
+  .flashcard-progress { margin-bottom: 14px; font-size: 12px; margin-top: 32px; }
   .flashcard-stage { margin-bottom: 16px; }
   .flashcard { min-height: 240px; }
   .flashcard-face { padding: 24px 18px; }
@@ -1078,10 +1084,11 @@ a { color: inherit; text-decoration: none; }
   .flashcard-back .flashcard-breakdown { font-size: 13px; }
   .listen-mini { margin-top: 14px; padding: 8px 16px; font-size: 12px; }
   
+  /* 플래시카드 버튼 고정 안함 */
   .flashcard-actions { 
     flex-wrap: nowrap; 
     gap: 8px; 
-    position: static; /* 상단 고정 제거 */
+    position: static; 
     background: transparent;
     margin: 0;
     padding: 0;
@@ -1111,17 +1118,17 @@ a { color: inherit; text-decoration: none; }
   /* Mini CTA */
   .mini-cta-wrap { padding: 28px 20px; gap: 14px; }
   .mini-cta-content { align-items: center; gap: 16px; }
-  .mini-cta-text h3 { font-size: 24px; white-space: nowrap; }
+  .mini-cta-text h3 { font-size: 24px; white-space: normal; } /* 줄바꿈 허용 */
   .mini-cta-text p { font-size: 13px; max-width: none; }
-  .mini-cta-actions { width: 100%; flex-direction: row; }
-  .mini-cta-btn { flex: 1; justify-content: center; padding: 14px 12px; font-size: 13px; }
+  .mini-cta-actions { width: 100%; flex-direction: row; justify-content: center; }
+  .mini-cta-btn { flex: unset; justify-content: center; padding: 16px 28px; font-size: 14px; }
 
-  /* Header Sticky 제거 (기본 흐름으로 변경) */
+  /* Header 공통 처리 제거 */
   .stage-pattern, .stage-flashcards { padding-top: 56px !important; }
   .stage-pattern .section-head,
   .stage-flashcards .section-head {
-    position: static; /* 상단 고정 제거 */
-    margin: 0;
+    position: static;
+    margin: 0 0 32px 0;
     padding: 0;
     background: transparent;
   }
@@ -1218,7 +1225,7 @@ a { color: inherit; text-decoration: none; }
     <div class="section-head">
       <span class="chip">Step 1 · Discover</span>
       <h2>Tap any word.<br>Watch the pattern.</h2>
-      <p class="sub">Every word ends in 지. The first syllable changes the meaning.
+      <p class="sub" style="margin-bottom: 24px;">Every word ends in 지. The first syllable changes the meaning.
 Click each one - see how it works.</p>
     </div>
 
@@ -1226,17 +1233,17 @@ Click each one - see how it works.</p>
       <div class="equation">
         <div class="eq-block" id="eqFirst">
           <span class="kr" id="eqFirstKr">?</span>
-          <span class="en" id="eqFirstEn">tap below</span>
+          <span class="en" id="eqFirstEn">Tap Below</span>
         </div>
         <span class="eq-op">+</span>
         <div class="eq-block fixed">
           <span class="kr">지</span>
-          <span class="en">paper</span>
+          <span class="en">Paper</span>
         </div>
         <span class="eq-op">=</span>
         <div class="eq-block result" id="eqResult">
           <span class="kr" id="eqResultKr">?</span>
-          <span class="en" id="eqResultEn">choose</span>
+          <span class="en" id="eqResultEn">Choose</span>
         </div>
       </div>
 
@@ -1269,7 +1276,7 @@ Pull the word from your head before flipping the card.</p>
       <div class="flashcard-stage" id="flashcardStage">
         <div class="flashcard" id="flashcard" onclick="flipCard()">
           <div class="flashcard-face">
-            <div class="flashcard-en" id="fcEn">Stationary paper</div>
+            <div class="flashcard-en" id="fcEn">Stationary Paper</div>
             <div class="flashcard-hint">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4M12 16h.01"/><circle cx="12" cy="12" r="10"/></svg>
               Hint: ends in 지 (paper)
@@ -1331,17 +1338,13 @@ Pull the word from your head before flipping the card.</p>
     <div class="mini-cta-bar"></div>
     <div class="mini-cta-content">
       <div class="mini-cta-text">
-        <h3>Loving this so far?</h3>
-        <p>Issue 02 only goes out to readers who reply.<br>Just a quick email — takes 5 seconds.</p>
+        <h3>Want to get the next Bite for free?</h3>
+        <p>Issue 02 only goes out to readers who apply.<br>Just a quick email — takes 5 seconds.</p>
       </div>
       <div class="mini-cta-actions">
-        <button class="mini-cta-btn mini-cta-copy" onclick="copyMiniTemplate(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span class="mini-cta-btn-text">Copy Reply</span>
-        </button>
         <a href="mailto:red_korean@koreanharu.com?subject=Applying%20for%20Haru%20Bite%20Issue%202!&body=Looking%20forward%20to%20the%20next%20lesson!%20I'm%20applying!" class="mini-cta-btn mini-cta-send">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          Send Email
+          Apply for the Next Issue via Email!
         </a>
       </div>
     </div>
@@ -1388,7 +1391,7 @@ Pull the word from your head before flipping the card.</p>
 <!-- ============ STAGE 6: REPLY CTA ============ -->
 <section class="stage-cta">
   <div class="cta-syllable">장</div>
-  <h2 class="cta-headline">Issue 02 covers <em>장</em>.<br>Reply to keep getting it.</h2>
+  <h2 class="cta-headline">Issue 02 covers <em>장</em>.<br><br>Reply to keep getting it.</h2>
   <p class="cta-sub">시장 (market). 공장 (factory). 운동장 (playground).<br>One syllable, dozens of words.<br><strong style="color:white">Issue 02 only goes to readers who reply.</strong></p>
 
   <div class="reply-card">
@@ -1440,16 +1443,16 @@ Pull the word from your head before flipping the card.</p>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const WORDS = [
-  { en: "Stationary paper",    kr: "편지지", from: "편지",  fromMean: "letter" },
-  { en: "Test paper",          kr: "시험지", from: "시험",  fromMean: "test" },
+  { en: "Stationary Paper",    kr: "편지지", from: "편지",  fromMean: "letter" },
+  { en: "Test Paper",          kr: "시험지", from: "시험",  fromMean: "test" },
   { en: "Worksheet",           kr: "학습지", from: "학습",  fromMean: "study" },
-  { en: "Packing paper",       kr: "포장지", from: "포장",  fromMean: "packaging" },
-  { en: "Manuscript paper",    kr: "원고지", from: "원고",  fromMean: "draft" },
-  { en: "Toilet paper",        kr: "휴지",   from: "휴",    fromMean: "rest" },
-  { en: "Note (slip)",         kr: "쪽지",   from: "쪽",    fromMean: "slip" },
-  { en: "Survey form",         kr: "설문지", from: "설문",  fromMean: "survey" },
-  { en: "Interview sheet",     kr: "질문지", from: "질문",  fromMean: "question" },
-  { en: "One-side-used<br>paper", kr: "이면지", from: "이면",  fromMean: "other side" },
+  { en: "Packing Paper",       kr: "포장지", from: "포장",  fromMean: "packaging" },
+  { en: "Manuscript Paper",    kr: "원고지", from: "원고",  fromMean: "draft" },
+  { en: "Toilet Paper",        kr: "휴지",   from: "휴",    fromMean: "rest" },
+  { en: "Note (Slip)",         kr: "쪽지",   from: "쪽",    fromMean: "slip" },
+  { en: "Survey Form",         kr: "설문지", from: "설문",  fromMean: "survey" },
+  { en: "Interview Sheet",     kr: "질문지", from: "질문",  fromMean: "question" },
+  { en: "One-Side-Used<br>Paper", kr: "이면지", from: "이면",  fromMean: "other side" },
 ];
 
 const STORIES = [
@@ -1697,23 +1700,6 @@ ratingPills.forEach(p => p.addEventListener('click', () => {
   ratingPills.forEach(x => x.classList.toggle('active', x === p));
   if (ratingReadout) ratingReadout.innerHTML = `Thank you for the rating! We'll prepare even more helpful content next time!`;
 }));
-
-function copyMiniTemplate(btn) {
-  const fullText = `To: red_korean@koreanharu.com\nSubject: Applying for Haru Bite Issue 2!\n\nLooking forward to the next lesson! I'm applying!`;
-  const textSpan = btn.querySelector('.mini-cta-btn-text');
-  const original = textSpan.textContent;
-  navigator.clipboard.writeText(fullText).then(() => {
-    btn.classList.add('copied');
-    textSpan.textContent = 'Copied!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      textSpan.textContent = original;
-    }, 2200);
-  }).catch(() => {
-    textSpan.textContent = 'Copy failed';
-    setTimeout(() => { textSpan.textContent = original; }, 2200);
-  });
-}
 
 // === Reveal ===
 const revealEls = document.querySelectorAll('.stage-pattern, .stage-flashcards, .stage-stories, .stage-quiz, .stage-cta');
