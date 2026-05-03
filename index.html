@@ -157,6 +157,7 @@ a { color: inherit; text-decoration: none; }
   align-items: center;
   gap: 10px;
   transition: all 0.2s;
+  white-space: nowrap;
 }
 .reveal-btn:hover { background: var(--brand-deep); transform: translateY(-2px); box-shadow: 0 12px 24px rgba(38,68,203,0.3); }
 .reveal-btn .ic { width: 18px; height: 18px; }
@@ -188,6 +189,7 @@ a { color: inherit; text-decoration: none; }
   pointer-events: none;
   transform: translateY(20px);
   transition: opacity 0.6s ease 0.4s, transform 0.6s ease 0.4s;
+  width: 100%;
 }
 .hook-stage.revealed .hook-meaning {
   opacity: 1;
@@ -223,18 +225,19 @@ a { color: inherit; text-decoration: none; }
   color: var(--brand);
   letter-spacing: -0.04em;
   line-height: 1;
-  padding-right: 0.1em; /* r 글자 잘림 방지 */
+  padding-right: 0.1em;
 }
 .meaning-desc {
   font-family: var(--display);
   font-size: clamp(16px, 2vw, 19px);
   color: var(--muted);
   font-weight: 500;
-  max-width: 480px;
+  max-width: 680px;
+  width: 100%;
   text-align: center;
   margin: 0 auto 28px;
   line-height: 1.55;
-  padding: 0 20px;
+  padding: 0 16px;
 }
 
 /* === STAGE 2: PATTERN === */
@@ -270,6 +273,7 @@ a { color: inherit; text-decoration: none; }
   padding: 48px 32px;
   max-width: 800px;
   margin: 0 auto;
+  width: 100%;
 }
 .equation {
   display: flex;
@@ -301,29 +305,47 @@ a { color: inherit; text-decoration: none; }
   white-space: nowrap;
 }
 .eq-block .en {
-  font-size: 14px; /* +2pt 증가 */
+  font-size: 14px;
   color: var(--muted);
   font-weight: 600;
   margin-top: 4px;
   letter-spacing: 0.02em;
   white-space: nowrap;
+  text-transform: capitalize;
 }
 .eq-block.fixed { background: var(--brand-soft); border-color: var(--brand); }
 .eq-block.fixed .kr { color: var(--brand); }
 .eq-block.fixed .en { color: var(--brand); font-weight: 700; }
+
+/* === 고정된 검정 블럭 크기 및 중앙 정렬 === */
 .eq-block.result {
   background: var(--ink);
   border-color: var(--ink);
   transform: scale(1.08);
-  min-width: 130px;
-  height: 110px; /* 높이 고정 */
+  width: 140px;
+  max-width: 140px;
+  height: 110px;
+  min-height: 110px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
 }
-.eq-block.result .kr { color: white; font-size: 40px; }
-.eq-block.result .en { color: var(--yellow); font-weight: 700; font-size: 15px; text-transform: uppercase; } /* +2pt 증가 */
+.eq-block.result .kr { 
+  color: white; 
+  font-size: 36px; 
+}
+.eq-block.result .en { 
+  color: var(--yellow); 
+  font-weight: 700; 
+  font-size: 13px; 
+  text-transform: capitalize; 
+  white-space: normal; 
+  line-height: 1.2;
+  margin-top: 6px;
+  width: 100%;
+}
 .eq-op {
   font-family: var(--display);
   font-size: 36px;
@@ -347,12 +369,13 @@ a { color: inherit; text-decoration: none; }
   color: var(--ink-soft);
   transition: all 0.2s;
   cursor: pointer;
+  text-transform: capitalize;
 }
 .word-chip:hover { border-color: var(--brand); color: var(--brand); transform: translateY(-1px); }
 .word-chip.active { background: var(--brand); border-color: var(--brand); color: white; }
 .word-chip.explored { background: var(--brand-soft); border-color: var(--brand-soft); color: var(--brand); }
 .word-chip.active.explored { background: var(--brand); color: white; }
-.word-chip .kr { font-family: var(--kr); font-weight: 700; margin-right: 6px; }
+.word-chip .kr { font-family: var(--kr); font-weight: 700; margin-right: 6px; text-transform: none; }
 
 .pattern-counter {
   text-align: center;
@@ -509,6 +532,7 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 16px;
   line-height: 1.1;
   text-align: center;
+  text-transform: capitalize;
 }
 .flashcard-hint {
   font-size: 13px;
@@ -754,7 +778,7 @@ a { color: inherit; text-decoration: none; }
 }
 .quiz-row:last-of-type { border-bottom: none; }
 .quiz-num { font-size: 14px; font-weight: 700; color: var(--muted-light); }
-.quiz-en-text { font-size: 16px; font-weight: 700; color: var(--ink); }
+.quiz-en-text { font-size: 16px; font-weight: 700; color: var(--ink); text-transform: capitalize; }
 .quiz-input {
   font-family: var(--kr);
   font-size: 18px;
@@ -828,12 +852,11 @@ a { color: inherit; text-decoration: none; }
 .rating-pill:hover { background: rgba(255,255,255,0.12); color: white; }
 .rating-pill.active { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 .rating-readout {
-  font-size: 12px;
-  color: rgba(255,255,255,0.55);
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
   text-align: center;
   line-height: 1.5;
 }
-.rating-readout strong { color: var(--yellow); font-weight: 800; }
 
 /* === STAGE 6: ONE CTA === */
 .stage-cta {
@@ -893,17 +916,6 @@ a { color: inherit; text-decoration: none; }
   transition: all 0.2s;
 }
 .cta-btn-primary:hover { background: white; transform: translateY(-2px); }
-.cta-btn-ghost {
-  background: rgba(255,255,255,0.1);
-  color: white;
-  padding: 18px 36px;
-  border-radius: var(--r-pill);
-  font-size: 15px;
-  font-weight: 700;
-  border: 1px solid rgba(255,255,255,0.2);
-  transition: all 0.2s;
-}
-.cta-btn-ghost:hover { background: rgba(255,255,255,0.18); }
 .cta-trust { font-size: 13px; opacity: 0.6; font-weight: 500; }
 
 /* Reply card on dark CTA */
@@ -953,100 +965,6 @@ a { color: inherit; text-decoration: none; }
   color: white;
   font-weight: 500;
 }
-.reply-line-eg {
-  color: rgba(255,255,255,0.5);
-  font-weight: 400;
-  font-size: 14px;
-}
-.reply-line-eg strong {
-  font-family: var(--kr);
-  color: var(--yellow);
-  font-weight: 700;
-}
-.reply-card-eg {
-  background: rgba(0,0,0,0.3);
-  border-radius: var(--r-md);
-  padding: 16px 20px;
-}
-.reply-card-eg-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
-  display: block;
-  margin-bottom: 8px;
-}
-.reply-card-eg-text {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-family: ui-monospace, 'Menlo', monospace;
-  font-size: 15px;
-  color: white;
-}
-.reply-card-eg-text span:nth-child(2) {
-  font-family: var(--kr);
-  font-weight: 700;
-  color: var(--yellow);
-  font-size: 18px;
-}
-
-/* Copy-paste template block */
-.reply-template {
-  background: rgba(0,0,0,0.35);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: var(--r-md);
-  overflow: hidden;
-  margin-top: 8px;
-}
-.reply-template-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 16px;
-  background: rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-}
-.reply-template-label {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.5);
-}
-.copy-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--yellow);
-  color: var(--ink);
-  padding: 8px 14px;
-  border-radius: var(--r-pill);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: all 0.2s;
-}
-.copy-btn:hover { background: white; transform: translateY(-1px); }
-.copy-btn.copied {
-  background: var(--success);
-  color: white;
-}
-.copy-btn svg { flex-shrink: 0; }
-.reply-template-text {
-  font-family: ui-monospace, 'Menlo', 'Consolas', monospace;
-  font-size: 15px;
-  line-height: 1.7;
-  color: white;
-  padding: 20px 24px;
-  white-space: pre-wrap;
-  word-break: keep-all;
-  margin: 0;
-  user-select: all;
-  cursor: text;
-  font-family: ui-monospace, var(--kr), monospace;
-}
 
 /* === FOOTER === */
 .footer {
@@ -1078,7 +996,6 @@ a { color: inherit; text-decoration: none; }
 /* === Responsive === */
 @media (max-width: 768px) {
   :root { --gutter: 20px; }
-  /* Tighter vertical rhythm so each stage fits in viewport on mobile */
   .stage-pattern, .stage-flashcards, .stage-stories, .stage-quiz, .stage-cta { padding: 56px var(--gutter); }
 
   /* Hook */
@@ -1094,14 +1011,20 @@ a { color: inherit; text-decoration: none; }
   .meaning-word { font-size: clamp(54px, 14vw, 72px); }
   .meaning-desc {
     font-size: 15px;
-    padding: 0;
-    max-width: none;
-    width: calc(100% - 64px) !important; /* 버튼과 끝 사이 적정 여백 */
+    padding: 0 10px;
+    max-width: 100%;
+    width: 100% !important;
     margin: 0 auto 24px !important;
     line-height: 1.5;
   }
 
   /* Screen 3 — Pattern */
+  .equation-builder {
+    padding: 24px 16px;
+    background: var(--bg-alt); /* 통일된 회색 배경 */
+    border-radius: var(--r-lg);
+    width: 100%;
+  }
   .equation {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1109,19 +1032,12 @@ a { color: inherit; text-decoration: none; }
     align-items: center;
     justify-content: center;
     min-height: auto;
-    background: var(--bg-alt);
+    background: transparent;
     border-radius: 0;
-    /* 상단 고정 */
-    position: sticky;
-    top: var(--sticky-head-h, 110px);
-    z-index: 10;
-    margin: 0 calc(var(--gutter) * -1) 16px;
-    padding: 12px var(--gutter);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  }
-  .equation-builder {
+    margin: 0 0 20px 0;
     padding: 0;
-    position: static;
+    box-shadow: none;
+    position: static; /* 상단 고정 해제하여 gray 배경 내부에 위치 */
   }
   .eq-block {
     padding: 8px 4px;
@@ -1131,16 +1047,17 @@ a { color: inherit; text-decoration: none; }
     flex: 1 1 0;
   }
   .eq-block .kr { font-size: 17px; line-height: 1.05; letter-spacing: -0.04em; }
-  .eq-block .en { font-size: 11px; margin-top: 2px; } /* +2pt 적용됨 */
+  .eq-block .en { font-size: 11px; margin-top: 2px; } 
   .eq-block.result {
-    min-width: 0; width: auto; max-width: none;
+    min-width: 0; width: 140px !important; max-width: 140px !important;
     transform: none !important;
-    flex: 2 1 0;     /* result box wider so 3-syllable words like 원고지 fit one line */
-    padding: 8px 6px;
-    height: 80px; /* 고정 높이 */
+    flex: 0 0 140px !important;
+    padding: 8px 6px !important;
+    height: 90px !important; 
+    min-height: 90px !important;
   }
-  .eq-block.result .kr { font-size: 18px; }
-  .eq-block.result .en { font-size: 12px; } /* +2pt 적용됨 */
+  .eq-block.result .kr { font-size: 24px !important; }
+  .eq-block.result .en { font-size: 11px !important; margin-top: 4px !important; }
   .eq-op { font-size: 14px; flex: 0 0 auto; padding: 0 1px; color: var(--muted-light); }
 
   /* Section headings */
@@ -1161,17 +1078,14 @@ a { color: inherit; text-decoration: none; }
   .flashcard-back .flashcard-breakdown { font-size: 13px; }
   .listen-mini { margin-top: 14px; padding: 8px 16px; font-size: 12px; }
   
-  /* Flashcard Actions 상단 고정 */
   .flashcard-actions { 
     flex-wrap: nowrap; 
     gap: 8px; 
-    position: sticky;
-    top: var(--sticky-head-h, 110px);
-    z-index: 10;
-    background: var(--bg-alt);
-    margin: 0 calc(var(--gutter) * -1) 16px;
-    padding: 12px var(--gutter);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    position: static; /* 상단 고정 제거 */
+    background: transparent;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
   }
   .fc-btn { font-size: 12px; padding: 12px 10px; max-width: none; }
   .fc-btn-skip { flex: 0 0 auto; min-width: 64px; }
@@ -1194,7 +1108,7 @@ a { color: inherit; text-decoration: none; }
   .story-block-toggle { width: 28px; height: 28px; }
   .story-block-body p { font-size: 14px; }
 
-  /* Mini CTA (Loving this so far?) */
+  /* Mini CTA */
   .mini-cta-wrap { padding: 28px 20px; gap: 14px; }
   .mini-cta-content { align-items: center; gap: 16px; }
   .mini-cta-text h3 { font-size: 24px; white-space: nowrap; }
@@ -1202,22 +1116,19 @@ a { color: inherit; text-decoration: none; }
   .mini-cta-actions { width: 100%; flex-direction: row; }
   .mini-cta-btn { flex: 1; justify-content: center; padding: 14px 12px; font-size: 13px; }
 
-  /* Sticky Header (공통) */
-  .stage-pattern, .stage-flashcards { padding-top: 0 !important; }
+  /* Header Sticky 제거 (기본 흐름으로 변경) */
+  .stage-pattern, .stage-flashcards { padding-top: 56px !important; }
   .stage-pattern .section-head,
   .stage-flashcards .section-head {
-    position: sticky;
-    top: 0;
-    z-index: 11;
-    margin: 0 calc(var(--gutter) * -1) 0;
-    padding: 28px var(--gutter) 12px;
+    position: static; /* 상단 고정 제거 */
+    margin: 0;
+    padding: 0;
+    background: transparent;
   }
   .stage-pattern { background: white; }
   .stage-flashcards { background: var(--bg-alt); }
-  .stage-pattern .section-head { background: white; }
-  .stage-flashcards .section-head { background: var(--bg-alt); }
   .stage-pattern .section-head h2,
-  .stage-flashcards .section-head h2 { font-size: 28px; line-height: 1.1; margin: 6px 0 8px; }
+  .stage-flashcards .section-head h2 { font-size: 28px; line-height: 1.1; margin: 0 0 8px; }
   .stage-pattern .section-head .sub,
   .stage-flashcards .section-head .sub { font-size: 13px; line-height: 1.4; }
 
@@ -1250,8 +1161,7 @@ a { color: inherit; text-decoration: none; }
   .cta-headline br { display: none; }   
   .cta-sub { font-size: 14px; margin-bottom: 24px; }
   .cta-btn-group { margin-bottom: 20px; }
-  .cta-btn-primary { padding: 20px 32px !important; font-size: 18px !important; width: 100%; justify-content: center; }
-  .cta-btn-ghost { padding: 16px 24px; font-size: 14px; width: 100%; justify-content: center; }
+  .cta-btn-primary { padding: 20px 24px !important; font-size: 16px !important; width: 100%; justify-content: center; }
 
   /* Reply card */
   .reply-card { padding: 20px 16px; margin-top: 8px; }
@@ -1260,9 +1170,6 @@ a { color: inherit; text-decoration: none; }
   .reply-line { gap: 12px; }
   .reply-line-num { width: 24px; height: 24px; font-size: 12px; }
   .reply-line-text { font-size: 14px; }
-  .reply-line-eg { font-size: 12px; display: block; margin-top: 2px; }
-  .reply-template-text { font-size: 14px; padding: 14px 16px; }
-  .copy-btn { padding: 8px 14px; font-size: 12px; }
 
   /* Footer */
   .footer-inner { flex-direction: column; text-align: center; gap: 12px; }
@@ -1274,7 +1181,7 @@ a { color: inherit; text-decoration: none; }
   .flashcard-en { font-size: 24px; }
   .fc-btn { font-size: 11px; padding: 12px 8px; }
   .story-block-kr { font-size: 28px; width: 52px; }
-  .cta-btn-primary { font-size: 16px !important; padding: 18px 24px !important; }
+  .cta-btn-primary { font-size: 15px !important; padding: 18px 20px !important; }
 }
 </style>
 </head>
@@ -1293,14 +1200,14 @@ a { color: inherit; text-decoration: none; }
       </div>
       <p class="meaning-desc">지 (ji) is a syllable that means 'paper'. Just as 'news' + 'paper' becomes 'newspaper', many words in Korean are also formed by combining multiple syllables. Shall we take a look at some words created by attaching '지'?</p>
       <a href="#pattern" class="reveal-btn">
-        Check the pattern
+        Check The Pattern Now
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12l7 7 7-7"/></svg>
       </a>
     </div>
   </div>
   <div class="hook-prompt" id="hookPrompt">
     <div class="hook-question" style="text-align: center">Learn this ONE letter,<br>memorize 10+ words instantly.</div>
-    <button class="reveal-btn" onclick="revealMeaning()">Check the pattern</button>
+    <button class="reveal-btn" onclick="revealMeaning()">Show Me How It Works</button>
   </div>
   <div class="scroll-hint" id="scrollHint">RED KOREAN'S FREE CLASS WITH 370K+ FOLLOWERS</div>
 </section>
@@ -1385,9 +1292,9 @@ Pull the word from your head before flipping the card.</p>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
           Back
         </button>
-        <button class="fc-btn fc-btn-learn" onclick="markCard(false)">Need practice</button>
+        <button class="fc-btn fc-btn-learn" onclick="markCard(false)">Need Practice</button>
         <button class="fc-btn fc-btn-knew" onclick="markCard(true)">
-          I knew it
+          I Knew It
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </button>
       </div>
@@ -1425,16 +1332,16 @@ Pull the word from your head before flipping the card.</p>
     <div class="mini-cta-content">
       <div class="mini-cta-text">
         <h3>Loving this so far?</h3>
-        <p>Issue 02 only goes out to readers who reply. Just a quick email — takes 5 seconds.</p>
+        <p>Issue 02 only goes out to readers who reply.<br>Just a quick email — takes 5 seconds.</p>
       </div>
       <div class="mini-cta-actions">
         <button class="mini-cta-btn mini-cta-copy" onclick="copyMiniTemplate(this)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span class="mini-cta-btn-text">Copy reply</span>
+          <span class="mini-cta-btn-text">Copy Reply</span>
         </button>
-        <a href="/cdn-cgi/l/email-protection#403225241f2b2f3225212e002b2f3225212e282132356e232f2d7f3335222a2523347d09333335256572707071657270242f2e256165727013252e246572702d256572700933333525657270707265727065067065790665780565787966222f24397d0c2f36292e276572702934657270332f6572702621326165727013252e246572702d2565727009333335256572707072657270302c252133256e" class="mini-cta-btn mini-cta-send">
+        <a href="mailto:red_korean@koreanharu.com?subject=Applying%20for%20Haru%20Bite%20Issue%202!&body=Looking%20forward%20to%20the%20next%20lesson!%20I'm%20applying!" class="mini-cta-btn mini-cta-send">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
-          Send email
+          Send Email
         </a>
       </div>
     </div>
@@ -1459,7 +1366,7 @@ Pull the word from your head before flipping the card.</p>
     <div class="section-head">
       <span class="chip">Step 4 · Test</span>
       <h2>Final check.</h2>
-      <p class="sub">Type the Korean for each meaning. Auto-checks as you go.</p>
+      <p class="sub">Type the Korean for each meaning.<br>Auto-checks as you go.</p>
     </div>
     <div class="quiz-card">
       <div class="quiz-progress">
@@ -1470,7 +1377,7 @@ Pull the word from your head before flipping the card.</p>
       <div class="quiz-result">
         <div class="quiz-result-msg" id="resultMsg">Answer all 6 questions, then tap the button below.</div>
         <button class="btn btn-primary" id="checkScoreBtn" onclick="checkScore()">
-          Check my score
+          Check My Score
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
         </button>
       </div>
@@ -1485,21 +1392,16 @@ Pull the word from your head before flipping the card.</p>
   <p class="cta-sub">시장 (market). 공장 (factory). 운동장 (playground).<br>One syllable, dozens of words.<br><strong style="color:white">Issue 02 only goes to readers who reply.</strong></p>
 
   <div class="reply-card">
-    <div class="reply-card-label">REPLY TO THE EMAIL WITH</div>
+    <div class="reply-card-label">TO GET ISSUE 02</div>
     <div class="reply-card-format">
       <div class="reply-line">
         <span class="reply-line-num">1</span>
-        <span class="reply-line-text">How helpful was this newsletter on a scale of 1–10? <span class="reply-line-eg">(rate below)</span></span>
-      </div>
-      <div class="reply-line">
-        <span class="reply-line-num">2</span>
-        <span class="reply-line-text">Confirm your Issue 02 sign-up <span class="reply-line-eg">(copy the template below)</span></span>
+        <span class="reply-line-text">How helpful was this newsletter?</span>
       </div>
     </div>
 
     <!-- Satisfaction rating -->
     <div class="rating-block">
-      <div class="rating-label">Was this newsletter helpful?</div>
       <div class="rating-stars" id="ratingStars">
         <button type="button" class="rating-pill" data-r="1">1</button>
         <button type="button" class="rating-pill" data-r="2">2</button>
@@ -1512,27 +1414,14 @@ Pull the word from your head before flipping the card.</p>
         <button type="button" class="rating-pill" data-r="9">9</button>
         <button type="button" class="rating-pill" data-r="10">10</button>
       </div>
-      <div class="rating-readout" id="ratingReadout">Pick a score — it'll auto-fill the sign-up template below.</div>
-    </div>
-
-    <div class="reply-template" id="replyTemplate">
-      <div class="reply-template-header">
-        <span class="reply-template-label">COPY THIS TEMPLATE</span>
-        <button class="copy-btn" onclick="copyTemplate(this)">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-          <span class="copy-btn-text">Copy</span>
-        </button>
-      </div>
-      <pre class="reply-template-text" id="replyTemplateText">I'd rate this <span id="tplRating">__</span>/10!
-Please send me the next newsletter.
-I want to get the newsletter!</pre>
+      <div class="rating-readout" id="ratingReadout">Please rate to let us know!</div>
     </div>
   </div>
 
-  <p class="cta-sub" style="margin-top:32px; margin-bottom: 24px; font-size:15px;">Paste it in the email reply, <br>fill in the blanks, hit send.<br><span style="opacity:0.5">No reply = Issue 02 won't reach you.<br>(You can rejoin anytime.)</span></p>
+  <p class="cta-sub" style="margin-top:32px; margin-bottom: 24px; font-size:15px;">Click the button below to send us an email!<br><span style="opacity:0.5">No reply = Issue 02 won't reach you.<br>(You can rejoin anytime.)</span></p>
 
   <div class="cta-btn-group">
-    <a href="/cdn-cgi/l/email-protection#245641407b4f4b5641454a644f4b5641454a4c4556510a474b491b5751464e414750196d575751410116141415011614404b4a410501161477414a4001161449410116146d575751410116141416011614016214011d62011c61011c1d" class="cta-btn-primary">Reply Now</a>
+    <a href="mailto:red_korean@koreanharu.com?subject=Applying%20for%20Haru%20Bite%20Issue%202!&body=Looking%20forward%20to%20the%20next%20lesson!%20I'm%20applying!" class="cta-btn-primary">Email to Get the Next Free Bite</a>
   </div>
   <div class="cta-trust">Launching Soon, HARU Korean app</div>
 </section>
@@ -1560,7 +1449,7 @@ const WORDS = [
   { en: "Note (slip)",         kr: "쪽지",   from: "쪽",    fromMean: "slip" },
   { en: "Survey form",         kr: "설문지", from: "설문",  fromMean: "survey" },
   { en: "Interview sheet",     kr: "질문지", from: "질문",  fromMean: "question" },
-  { en: "One-side-used paper", kr: "이면지", from: "이면",  fromMean: "other side" },
+  { en: "One-side-used<br>paper", kr: "이면지", from: "이면",  fromMean: "other side" },
 ];
 
 const STORIES = [
@@ -1610,7 +1499,7 @@ WORDS.forEach((w, i) => {
   const chip = document.createElement('button');
   chip.className = 'word-chip';
   chip.dataset.idx = i;
-  chip.innerHTML = `<span class="kr">${w.kr}</span>${w.en}`;
+  chip.innerHTML = `<span class="kr">${w.kr}</span>${w.en.replace('<br>',' ')}`;
   chip.addEventListener('click', () => selectWord(i));
   wordChips.appendChild(chip);
 });
@@ -1624,11 +1513,11 @@ function selectWord(idx) {
   document.getElementById('eqFirstKr').textContent = w.from;
   document.getElementById('eqFirstEn').textContent = w.fromMean;
   document.getElementById('eqResultKr').textContent = w.kr;
-  document.getElementById('eqResultEn').textContent = w.en;
+  document.getElementById('eqResultEn').innerHTML = w.en;
 
   const result = document.getElementById('eqResult');
   result.style.transform = 'scale(1.18)';
-  setTimeout(() => { result.style.transform = ''; }, 250);
+  setTimeout(() => { result.style.transform = 'scale(1.08)'; }, 250);
 
   exploredSet.add(idx);
   exploredSpan.textContent = exploredSet.size;
@@ -1670,7 +1559,7 @@ function renderFlashcard() {
   const w = WORDS[fcIdx];
   const card = document.getElementById('flashcard');
   card.classList.remove('flipped');
-  document.getElementById('fcEn').textContent = w.en;
+  document.getElementById('fcEn').innerHTML = w.en;
   document.getElementById('fcKr').textContent = w.kr;
   document.getElementById('fcBreakdown').innerHTML = `${w.from} (${w.fromMean}) + <span class="ji">지</span>`;
   document.getElementById('fcProgress').textContent = `Card ${fcIdx + 1} of ${WORDS.length}`;
@@ -1736,20 +1625,20 @@ STORIES.forEach((s) => {
 
 // === Stage 5: Quiz ===
 const quizList = document.getElementById('quizList');
-const QUIZ_WORDS = WORDS.slice(0, 6); // 문항 수 6개로 조절
+const QUIZ_WORDS = WORDS.slice(0, 6);
 QUIZ_WORDS.forEach((w, i) => {
   const row = document.createElement('div');
   row.className = 'quiz-row';
   row.innerHTML = `
     <span class="quiz-num">${String(i+1).padStart(2,'0')}</span>
-    <span class="quiz-en-text">${w.en}</span>
+    <span class="quiz-en-text">${w.en.replace('<br>',' ')}</span>
     <input type="text" class="quiz-input" data-answer="${w.kr}" data-i="${i}" placeholder="Korean" autocomplete="off" spellcheck="false" lang="ko">
     <span class="quiz-status" data-i="${i}"></span>
   `;
   quizList.appendChild(row);
 });
 
-const TOTAL = QUIZ_WORDS.length; // 6
+const TOTAL = QUIZ_WORDS.length; 
 const scorePill = document.getElementById('scorePill');
 const resultMsg = document.getElementById('resultMsg');
 
@@ -1799,34 +1688,18 @@ function checkScore() {
   else if (correct >= 2) msg = `<strong>${correct} / ${TOTAL}</strong> 좀 더 연습해볼까요?`;
   else msg = `<strong>${correct} / ${TOTAL}</strong> 다시 한번!`;
   resultMsg.innerHTML = msg;
-  document.getElementById('ratingStars')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// === Satisfaction rating → auto-fill template ===
+// === Satisfaction rating ===
 const ratingPills = document.querySelectorAll('.rating-pill');
 const ratingReadout = document.getElementById('ratingReadout');
-const tplRating = document.getElementById('tplRating');
 ratingPills.forEach(p => p.addEventListener('click', () => {
-  const v = p.dataset.r;
   ratingPills.forEach(x => x.classList.toggle('active', x === p));
-  if (tplRating) tplRating.textContent = v;
-  if (ratingReadout) ratingReadout.innerHTML = `<strong>${v}점</strong>이 템플릿에 입력되었어요. 아래에서 복사해 이메일 답장으로 보내주세요.`;
+  if (ratingReadout) ratingReadout.innerHTML = `Thank you for the rating! We'll prepare even more helpful content next time!`;
 }));
 
-function copyShareLink(btn) {
-  const url = window.location.href.split('#')[0];
-  navigator.clipboard.writeText(url).then(() => {
-    const orig = btn.textContent;
-    btn.textContent = 'Link copied!';
-    setTimeout(() => { btn.textContent = orig; }, 2000);
-  });
-}
-
 function copyMiniTemplate(btn) {
-  const to = 'red_korean@koreanharu.com';
-  const subject = 'Issue 01 done! Send me Issue 02 🎉';
-  const body = 'Loving it so far! Send me Issue 02 please.';
-  const fullText = `To: ${to}\nSubject: ${subject}\n\n${body}`;
+  const fullText = `To: red_korean@koreanharu.com\nSubject: Applying for Haru Bite Issue 2!\n\nLooking forward to the next lesson! I'm applying!`;
   const textSpan = btn.querySelector('.mini-cta-btn-text');
   const original = textSpan.textContent;
   navigator.clipboard.writeText(fullText).then(() => {
@@ -1841,40 +1714,6 @@ function copyMiniTemplate(btn) {
     setTimeout(() => { textSpan.textContent = original; }, 2200);
   });
 }
-
-function copyTemplate(btn) {
-  const body = document.getElementById('replyTemplateText').textContent;
-  const to = 'red_korean@koreanharu.com';
-  const subject = 'Issue 01 done! Send me Issue 02 🎉';
-  const fullText = `To: ${to}\nSubject: ${subject}\n\n${body}`;
-  const textSpan = btn.querySelector('.copy-btn-text');
-  navigator.clipboard.writeText(fullText).then(() => {
-    btn.classList.add('copied');
-    textSpan.textContent = 'Copied!';
-    setTimeout(() => {
-      btn.classList.remove('copied');
-      textSpan.textContent = 'Copy';
-    }, 2200);
-  }).catch(() => {
-    const range = document.createRange();
-    range.selectNode(document.getElementById('replyTemplateText'));
-    window.getSelection().removeAllRanges();
-    window.getSelection().addRange(range);
-    textSpan.textContent = 'Selected — press Ctrl+C';
-  });
-}
-
-// === Dynamic sticky offsets for mobile ===
-function setStickyOffsets() {
-  if (window.innerWidth > 768) return;
-  const patternHead = document.querySelector('.stage-pattern .section-head');
-  if (patternHead) {
-    const h = patternHead.getBoundingClientRect().height;
-    document.querySelector('.stage-pattern').style.setProperty('--sticky-head-h', h + 'px');
-  }
-}
-setStickyOffsets();
-window.addEventListener('resize', setStickyOffsets);
 
 // === Reveal ===
 const revealEls = document.querySelectorAll('.stage-pattern, .stage-flashcards, .stage-stories, .stage-quiz, .stage-cta');
@@ -1892,7 +1731,7 @@ const io = new IntersectionObserver(es => {
 }, { threshold: 0.05, rootMargin: '0px 0px -40px 0px' });
 revealEls.forEach(el => { if (!el.classList.contains('in')) io.observe(el); });
 
-// Keyboard: only when flashcards are in viewport
+// Keyboard
 document.addEventListener('keydown', (e) => {
   const fc = document.getElementById('flashcards');
   const r = fc.getBoundingClientRect();
