@@ -105,6 +105,7 @@ a { color: inherit; text-decoration: none; }
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%; /* 부모 너비를 100%로 주어 텍스트가 갇히지 않게 함 */
 }
 .hook-syllable {
   font-family: var(--kr);
@@ -227,7 +228,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1;
   padding-right: 0.1em;
 }
-/* 텍스트 너비 및 여백 최적화 (4~5줄) */
+/* 텍스트 너비 넉넉하게 적용 */
 .meaning-desc {
   font-family: var(--display);
   font-size: clamp(16px, 2vw, 19px);
@@ -285,7 +286,6 @@ a { color: inherit; text-decoration: none; }
   margin-bottom: 36px;
   min-height: 110px;
 }
-/* 박스 크기 키우기 */
 .eq-block {
   background: white;
   border: 2px solid var(--border);
@@ -312,14 +312,14 @@ a { color: inherit; text-decoration: none; }
   font-weight: 600;
   margin-top: 4px;
   letter-spacing: 0.02em;
-  white-space: nowrap;
+  white-space: normal; /* Other Side 줄바꿈 적용을 위해 nowrap 해제 */
   text-transform: capitalize;
+  line-height: 1.2;
 }
 .eq-block.fixed { background: var(--brand-soft); border-color: var(--brand); }
 .eq-block.fixed .kr { color: var(--brand); }
 .eq-block.fixed .en { color: var(--brand); font-weight: 700; }
 
-/* 검정 박스 크기 줄이기 및 글자 넘침 완벽 방지 */
 .eq-block.result {
   background: var(--ink);
   border-color: var(--ink);
@@ -333,7 +333,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: center;
   align-items: center;
   padding: 10px;
-  overflow: hidden; /* 안전장치 */
+  overflow: hidden;
 }
 .eq-block.result .kr { 
   color: white; 
@@ -348,7 +348,7 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.2;
   margin-top: 6px;
   width: 100%;
-  word-break: break-word; /* 글자 넘어감 방지 */
+  word-break: break-word;
 }
 .eq-op {
   font-family: var(--display);
@@ -419,7 +419,6 @@ a { color: inherit; text-decoration: none; }
   gap: 24px;
   width: 100%;
 }
-/* 타이틀 노란색 적용 */
 .mini-cta-text h3 {
   font-family: var(--display);
   font-size: 28px;
@@ -435,7 +434,6 @@ a { color: inherit; text-decoration: none; }
   line-height: 1.5;
   margin: 0 auto;
 }
-/* 가운데 정렬 및 단일 버튼 구성 */
 .mini-cta-actions {
   display: flex;
   justify-content: center;
@@ -473,7 +471,7 @@ a { color: inherit; text-decoration: none; }
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
-  margin-top: 40px; /* 안내 문구와의 간격 추가 */
+  margin-top: 40px; 
   font-size: 13px;
   font-weight: 600;
   color: var(--muted);
@@ -1011,7 +1009,7 @@ a { color: inherit; text-decoration: none; }
   .meaning-word { font-size: clamp(54px, 14vw, 72px); }
   .meaning-desc {
     font-size: 15px;
-    padding: 0 12px;
+    padding: 0 20px; /* 좌우 여백을 늘려 텍스트가 넓게 감싸지게 함 */
     max-width: 100%;
     width: 100% !important;
     margin: 0 auto 24px !important;
@@ -1020,13 +1018,14 @@ a { color: inherit; text-decoration: none; }
 
   /* Screen 3 — Pattern */
   .equation-builder {
-    padding: 24px 16px;
+    padding: 0; 
     background: var(--bg-alt); 
     border-radius: var(--r-lg);
     width: 100%;
+    overflow: visible; /* 스티키 박스가 영역을 넘어서 고정될 수 있도록 설정 */
   }
   
-  /* Step 1 + = 수식 고정 부활 */
+  /* Step 1 + = 수식 고정 부활 - 화면 끝까지 꽉 차는 회색 배경 적용 */
   .equation {
     flex-direction: row;
     flex-wrap: nowrap;
@@ -1036,11 +1035,11 @@ a { color: inherit; text-decoration: none; }
     min-height: auto;
     background: var(--bg-alt);
     border-radius: 0;
-    padding: 12px 0;
-    margin: 0 0 20px 0;
-    box-shadow: 0 8px 16px var(--bg-alt);
+    padding: 16px var(--gutter);
+    margin: 0 calc(var(--gutter) * -1) 24px; /* 좌우 화면 끝까지 꽉 차게 확장 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
     position: sticky; 
-    top: -10px; /* 스크롤 시 상단에 딱 맞게 */
+    top: 0; /* 화면 제일 위에 딱 맞게 고정 */
     z-index: 10;
   }
   .eq-block {
@@ -1066,8 +1065,15 @@ a { color: inherit; text-decoration: none; }
   .eq-block.result .en { font-size: 10.5px !important; margin-top: 4px !important; line-height: 1.15; }
   .eq-op { font-size: 14px; flex: 0 0 auto; padding: 0 1px; color: var(--muted-light); }
 
+  .word-chips {
+    padding: 0 12px;
+  }
+  .pattern-counter {
+    padding: 0 12px 24px;
+  }
+
   /* Section headings */
-  .section-head { margin-bottom: 40px; } /* 텍스트 아래 여백 확보 */
+  .section-head { margin-bottom: 40px; } 
   .section-head h2 { font-size: clamp(28px, 6.5vw, 40px); margin-bottom: 12px; }
   .section-head .sub { font-size: 14px; }
   .section-head .chip { margin-bottom: 14px; }
@@ -1084,7 +1090,6 @@ a { color: inherit; text-decoration: none; }
   .flashcard-back .flashcard-breakdown { font-size: 13px; }
   .listen-mini { margin-top: 14px; padding: 8px 16px; font-size: 12px; }
   
-  /* 플래시카드 버튼 고정 안함 */
   .flashcard-actions { 
     flex-wrap: nowrap; 
     gap: 8px; 
@@ -1118,7 +1123,7 @@ a { color: inherit; text-decoration: none; }
   /* Mini CTA */
   .mini-cta-wrap { padding: 28px 20px; gap: 14px; }
   .mini-cta-content { align-items: center; gap: 16px; }
-  .mini-cta-text h3 { font-size: 24px; white-space: normal; } /* 줄바꿈 허용 */
+  .mini-cta-text h3 { font-size: 24px; white-space: normal; } 
   .mini-cta-text p { font-size: 13px; max-width: none; }
   .mini-cta-actions { width: 100%; flex-direction: row; justify-content: center; }
   .mini-cta-btn { flex: unset; justify-content: center; padding: 16px 28px; font-size: 14px; }
@@ -1452,7 +1457,7 @@ const WORDS = [
   { en: "Note (Slip)",         kr: "쪽지",   from: "쪽",    fromMean: "slip" },
   { en: "Survey Form",         kr: "설문지", from: "설문",  fromMean: "survey" },
   { en: "Interview Sheet",     kr: "질문지", from: "질문",  fromMean: "question" },
-  { en: "One-Side-Used<br>Paper", kr: "이면지", from: "이면",  fromMean: "other side" },
+  { en: "One-Side-Used<br>Paper", kr: "이면지", from: "이면",  fromMean: "Other<br>Side" },
 ];
 
 const STORIES = [
@@ -1514,7 +1519,7 @@ function selectWord(idx) {
   chip.classList.add('active', 'explored');
 
   document.getElementById('eqFirstKr').textContent = w.from;
-  document.getElementById('eqFirstEn').textContent = w.fromMean;
+  document.getElementById('eqFirstEn').innerHTML = w.fromMean;
   document.getElementById('eqResultKr').textContent = w.kr;
   document.getElementById('eqResultEn').innerHTML = w.en;
 
@@ -1564,7 +1569,7 @@ function renderFlashcard() {
   card.classList.remove('flipped');
   document.getElementById('fcEn').innerHTML = w.en;
   document.getElementById('fcKr').textContent = w.kr;
-  document.getElementById('fcBreakdown').innerHTML = `${w.from} (${w.fromMean}) + <span class="ji">지</span>`;
+  document.getElementById('fcBreakdown').innerHTML = `${w.from} (${w.fromMean.replace('<br>',' ')}) + <span class="ji">지</span>`;
   document.getElementById('fcProgress').textContent = `Card ${fcIdx + 1} of ${WORDS.length}`;
   document.getElementById('fcProgressFill').style.width = (fcIdx / WORDS.length * 100) + '%';
   document.getElementById('fcKnown').textContent = fcKnownCount;
